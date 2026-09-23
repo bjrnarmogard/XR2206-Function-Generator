@@ -1,45 +1,50 @@
-# XR2206-Function-Generator
-DIY XR2206 function generator PCB assembly and practical electronics project.
+# XR2206 Function Generator & Arduino Visualizer
 
-# XR2206 Function Generator
+DIY XR2206 function generator PCB assembly and practical electronics project, successfully integrated with an Arduino Uno to plot live waveforms.
 
-## Project
+This project is part of my practical electronics work to strengthen my knowledge of circuit analysis, PCB assembly, and microcontroller programming.
 
-I assembled and soldered an XR2206 function generator PCB from a through-hole component kit.
+## Project Status: Completed & Tested!
+The PCB has been fully assembled, soldered, cleaned, and successfully powered using a 12V AC/DC adapter. It is connected to an Arduino Uno to read and visualize the generated wave signals in real-time.
 
-This project is part of my practical electronics work and is being used to refresh and strengthen my knowledge of circuit analysis and electronic devices.
+## Work Completed
+- **Component Placement:** Identified and placed all through-hole electronic components.
+- **Soldering:** Successfully soldered the IC socket, resistors, switches, and capacitors (ensuring correct electrolytic polarity).
+- **Board Maintenance:** Cleaned the PCB to remove residual flux after soldering.
+- **Power Integration:** Obtained a suitable 12V 5.5x2.1mm DC barrel connector and safely powered the generator.
+- **Arduino Integration:** Wired the generator to an Arduino Uno and programmed it to read the live wave output safely.
+- **Testing:** Verified stable waveform creation and plotted the graphs on a PC.
 
-## Work completed
+## Hardware Wiring
+To safely read the signals, the generator was configured with the following connections:
+- **GND (Generator)** -> **GND (Arduino)**
+- **SIN/TRI (Generator)** -> **Analog Pin A0 (Arduino)**
+- *Note: The Amplitude potentiometer on the generator was dialed toward minimum to keep the output voltage safely within the Arduino's 5V limit.*
 
-- Identified and placed electronic components
-- Soldered through-hole components
-- Installed resistors
-- Installed capacitors
-- Installed the IC socket
-- Practiced electrolytic capacitor polarity
-- Inspected solder joints
-- Practiced PCB assembly and soldering
+## Software (Arduino Code)
+The following code was uploaded to the Arduino Uno to read the signal at 115200 baud:
 
-## Current status
+```cpp
+const int signalPin = A0; 
 
-PCB assembly completed.
+void setup() {
+  Serial.begin(115200); 
+}
 
-The function generator has not yet been powered and tested. I still need to obtain a suitable DC power connector before testing.
+void loop() {
+  int sensorValue = analogRead(signalPin);
+  Serial.println(sensorValue);
+  delay(10); 
+}
+```
 
-## Photos
+## Photos and Results
 
-### Top of PCB
+### Full Hardware Setup
+![Hardware Setup](image_CaoN-J.png)
 
-![XR2206 function generator - top](xr2206_top.jpg)
+### Live Waveform Output (Serial Plotter)
+![Live Waveform](image_fTBy1e.png)
 
-### Bottom of PCB
-
-![XR2206 function generator - solder side](xr2206_bottom.jpg)
-
-## Future work
-
-- Obtain the correct DC power connector
-- Power up the function generator
-- Test the output
-- Measure generated waveforms
-- Document the test results
+---
+*Proudly assembled, soldered, and programmed independently!*
